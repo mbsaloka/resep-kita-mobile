@@ -10,7 +10,7 @@ val SecondaryColor = Color(0xFFFFAE42)       // Orange
 val SecondaryLightColor = Color(0xFFFFA270)
 val SecondaryDarkColor = Color(0xFFC63F17)
 
-val BackgroundColor = Color(0xDAE3E3E3)      // Light gray
+val BackgroundColor = Color(0xFFEEEEEE)      // Light gray
 val SurfaceColor = Color(0xFFF3F3F3)         // White
 val OnPrimaryColor = Color(0xFFFFFFFF)        // Text on Primary
 val OnSecondaryColor = Color(0xFFFFFFFF)      // Text on Secondary
