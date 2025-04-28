@@ -29,14 +29,15 @@ private val LightColorScheme = lightColorScheme(
     surface = SurfaceColor,
     onPrimary = OnPrimaryColor,
     onSecondary = OnSecondaryColor,
-    onBackground = TextColor,
-    onSurface = TextColor
+    onBackground = TextPrimaryColor,
+    onSurface = TextPrimaryColor,
+    onSurfaceVariant = TextSecondaryColor
 )
 
 @Composable
 fun ResepKitaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

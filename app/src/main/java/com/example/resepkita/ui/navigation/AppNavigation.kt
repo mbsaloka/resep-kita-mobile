@@ -19,12 +19,12 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     Scaffold(
-        topBar = {
-            TopAppBarComponent(
-                title = "Resep Kita",
-                onMenuClick = { /* todo add logic */ }
-            )
-        }
+//        topBar = {
+//            TopAppBarComponent(
+//                title = "Resep Kita",
+//                onMenuClick = { /* todo add logic */ }
+//            )
+//        }
     ) { paddingValues ->
         NavHost(
             navController = navController,
