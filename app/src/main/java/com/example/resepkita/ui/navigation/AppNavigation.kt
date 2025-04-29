@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.resepkita.ui.screen.category.CategoryScreen
 import com.example.resepkita.ui.screen.detail.DetailScreen
 import com.example.resepkita.ui.screen.favorites.FavoritesScreen
 import com.example.resepkita.ui.screen.home.HomeScreen
@@ -30,9 +29,6 @@ fun AppNavigation() {
             }
             composable("home") {
                 HomeScreen(navController = navController)
-            }
-            composable("category") {
-                CategoryScreen(navController = navController)
             }
             composable(
                 "recipeDetail/{recipeId}",

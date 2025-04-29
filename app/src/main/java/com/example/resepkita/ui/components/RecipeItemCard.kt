@@ -85,7 +85,14 @@ fun RecipeItemCardPreview() {
             imageRes = R.drawable.nasigoreng,
             ingredients = listOf("Nasi", "Telur", "Kecap", "Bumbu"),
             steps = listOf("Panaskan minyak", "Masukkan nasi", "Aduk rata dengan bumbu"),
-            category = "Makanan Utama"
+            category = "Main Course",
+            difficulty = "Easy",
+            time = 20,
+            calories = 450,
+            author = "Chef Budi",
+            rating = 4.5f,
+            favorite = true,
+            cooked = true
         ),
         onClick = {}
     )

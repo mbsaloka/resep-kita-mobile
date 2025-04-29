@@ -162,8 +162,7 @@ fun DetailScreen(
 
                             // Author
                             Text(
-//                                text = "By ${it.author ?: "Chef"}",
-                                text = "By Dummy Chef",
+                                text = "By ${it.author}",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(vertical = 4.dp)
@@ -179,9 +178,7 @@ fun DetailScreen(
                                 // Time chip
                                 RecipeInfoChip(
                                     icon = Icons.Default.AccessTime,
-//                                    text = "${it.cookingTime ?: 70} mins"
-                                    text = "70 mins"
-
+                                    text = "${it.time} mins"
                                 )
 
                                 // Difficulty chip
@@ -192,18 +189,17 @@ fun DetailScreen(
                                         .padding(horizontal = 8.dp, vertical = 4.dp)
                                 ) {
                                     Text(
-//                                        text = it.difficulty ?: "Medium",
-                                        text = "Medium",
+                                        text = it.difficulty,
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
 
                                 // Calories chip
-//                                RecipeInfoChip(
-//                                    icon = Icons.Default.LocalFireDepartment,
-//                                    text = "${it.calories ?: 312} cal"
-//                                )
+                                RecipeInfoChip(
+                                    icon = Icons.Default.LocalFireDepartment,
+                                    text = "${it.calories} cal"
+                                )
                             }
 
                             // Description section
