@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -20,9 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.resepkita.R
 import com.example.resepkita.model.Recipe
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun RecipeItemCard(recipe: Recipe, onClick: () -> Unit) {
@@ -82,6 +79,7 @@ fun RecipeItemCardPreview() {
         recipe = Recipe(
             id = 1,
             title = "Nasi Goreng",
+            description = "Nasi goreng dengan rempah-rempah",
             imageRes = R.drawable.nasigoreng,
             ingredients = listOf("Nasi", "Telur", "Kecap", "Bumbu"),
             steps = listOf("Panaskan minyak", "Masukkan nasi", "Aduk rata dengan bumbu"),

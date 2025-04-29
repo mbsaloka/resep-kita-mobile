@@ -52,7 +52,8 @@ fun HomeScreen(
     navController: NavController,
     viewModel: HomeViewModel = viewModel()
 ) {
-    val recipes = viewModel.recipes.collectAsState(initial = emptyList())
+    val allRecipes = viewModel.allRecipes.collectAsState(initial = emptyList())
+    val filteredRecipes = viewModel.filteredRecipes.collectAsState(initial = emptyList())
     var searchQuery by remember { mutableStateOf("") }
 
     Column(modifier = Modifier
@@ -70,7 +71,7 @@ fun HomeScreen(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Hello, User!",
+                    text = "Hello, Buyung Saloka!",
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -103,6 +104,7 @@ fun HomeScreen(
                 query = searchQuery,
                 onQueryChanged = { newQuery ->
                     searchQuery = newQuery
+                    viewModel.searchRecipes(newQuery)
                 },
                 modifier = Modifier.weight(1f)
             )
@@ -154,7 +156,7 @@ fun HomeScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Recommendation",
+                text = "Recipes",
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 color = MaterialTheme.colorScheme.onSurface
@@ -166,9 +168,14 @@ fun HomeScreen(
                 color = MaterialTheme.colorScheme.primary
             )
         }
-        
-        if (recipes.value.isEmpty()) {
-            CircularProgressIndicator()
+
+        if (allRecipes.value.isEmpty()) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
         } else {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
@@ -177,9 +184,12 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp)
             ) {
-                items(recipes.value.size) { index ->
-                    val recipe = recipes.value[index]
-                    RecipeItemCard(recipe = recipe, onClick = { navController.navigate("recipeDetail/${recipe.id}") })
+                items(filteredRecipes.value.size) { index ->
+                    val recipe = filteredRecipes.value[index]
+                    RecipeItemCard(
+                        recipe = recipe,
+                        onClick = { navController.navigate("recipeDetail/${recipe.id}") }
+                    )
                 }
             }
         }

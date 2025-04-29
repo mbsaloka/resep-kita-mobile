@@ -1,13 +1,12 @@
 package com.example.resepkita.ui.screen.favorites
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,6 +33,8 @@ fun FavoritesScreen(
     viewModel: FavoritesViewModel = FavoritesViewModel()
 ) {
     val favorites = viewModel.favorites
+    val cooked = viewModel.cooked
+
     var searchQuery by remember { mutableStateOf("") }
 
     Scaffold(
@@ -45,7 +46,7 @@ fun FavoritesScreen(
                     ) {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
-                                imageVector = androidx.compose.material.icons.Icons.Filled.ArrowBack,
+                                imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
                             )
                         }
@@ -140,7 +141,7 @@ fun FavoritesScreen(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                items(favorites) { recipe ->
+                items(cooked) { recipe ->
                     FavoriteRecipeCard(
                         recipe = recipe,
                         onClick = { navController.navigate("recipeDetail/${recipe.id}") },

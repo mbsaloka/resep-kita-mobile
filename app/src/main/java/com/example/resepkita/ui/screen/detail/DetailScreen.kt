@@ -1,6 +1,5 @@
 package com.example.resepkita.ui.screen.detail
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -10,10 +9,11 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.LocalFireDepartment
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +41,8 @@ fun DetailScreen(
 ) {
     val viewModel: DetailViewModel = viewModel()
     val recipe = viewModel.getRecipeById(recipeId)
-    val density = LocalDensity.current
+    var isFavorite by remember { mutableStateOf(false) }
+
     val scrollState = rememberLazyListState()
     val scrollOffset = scrollState.firstVisibleItemScrollOffset
     val overlayAlpha = (scrollOffset / 300f).coerceIn(0f, 1f) * 0.5f
@@ -178,27 +178,22 @@ fun DetailScreen(
                                 // Time chip
                                 RecipeInfoChip(
                                     icon = Icons.Default.AccessTime,
-                                    text = "${it.time} mins"
+                                    text = "${it.time} mins",
+                                    tint = MaterialTheme.colorScheme.primary
                                 )
 
                                 // Difficulty chip
-                                Box(
-                                    modifier = Modifier
-                                        .clip(RoundedCornerShape(8.dp))
-                                        .background(MaterialTheme.colorScheme.surfaceVariant)
-                                        .padding(horizontal = 8.dp, vertical = 4.dp)
-                                ) {
-                                    Text(
-                                        text = it.difficulty,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
+                                RecipeInfoChip(
+                                    icon = Icons.Default.BarChart,
+                                    text = it.difficulty,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
 
                                 // Calories chip
                                 RecipeInfoChip(
                                     icon = Icons.Default.LocalFireDepartment,
-                                    text = "${it.calories} cal"
+                                    text = "${it.calories} cal",
+                                    tint = MaterialTheme.colorScheme.primary
                                 )
                             }
 
@@ -211,8 +206,7 @@ fun DetailScreen(
                             )
 
                             Text(
-//                                text = it.description ?: "A delicious recipe that's easy to make and perfect for any occasion. This dish combines fresh ingredients with a unique blend of spices for a memorable meal.",
-                                text = "A delicious recipe that's easy to make and perfect for any occasion. This dish combines fresh ingredients with a unique blend of spices for a memorable meal.",
+                                text = it.description,
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 16.dp)
@@ -336,7 +330,7 @@ fun DetailScreen(
                             .background(Color.White.copy(alpha = 0.7f))
                     ) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",
                             tint = MaterialTheme.colorScheme.onSurface
                         )
@@ -344,9 +338,14 @@ fun DetailScreen(
 
                     // Favorite button
                     IconButton(
-                        onClick = { /* Toggle favorite */ },
+                        onClick = { isFavorite = !isFavorite },
                         modifier = Modifier
                             .size(36.dp)
+                            .then(
+                                if (isFavorite) Modifier.background(
+                                    color = MaterialTheme.colorScheme.primary, shape = CircleShape
+                                ) else Modifier.background(Color.White.copy(alpha = 0.3f), shape = CircleShape)
+                            )
                             .clip(CircleShape)
                             .background(Color.White.copy(alpha = 0.7f))
                             .align(Alignment.TopEnd)
@@ -354,7 +353,7 @@ fun DetailScreen(
                         Icon(
                             imageVector = Icons.Filled.FavoriteBorder,
                             contentDescription = "Favorite",
-                            tint = MaterialTheme.colorScheme.onSurface
+                            tint = if (isFavorite) Color.White else MaterialTheme.colorScheme.onSurface
                         )
                     }
                 }
@@ -384,7 +383,7 @@ fun RecipeInfoChip(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(MaterialTheme.colorScheme.surface)
             .padding(horizontal = 8.dp, vertical = 4.dp)
     ) {
         Icon(

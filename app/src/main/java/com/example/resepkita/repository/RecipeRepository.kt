@@ -6,10 +6,10 @@ import com.example.resepkita.model.Recipe
 object RecipeRepository {
     fun getRecipes(): List<Recipe> {
         return listOf(
-            // Main Course
             Recipe(
                 id = 1,
                 title = "Nasi Goreng",
+                description = "Nasi goreng khas Indonesia dengan rasa gurih dan manis, cocok untuk sarapan atau makan malam.",
                 imageRes = R.drawable.nasigoreng,
                 ingredients = listOf("Nasi", "Telur", "Kecap", "Bumbu"),
                 steps = listOf("Panaskan minyak", "Masukkan nasi", "Aduk rata dengan bumbu"),
@@ -25,6 +25,7 @@ object RecipeRepository {
             Recipe(
                 id = 2,
                 title = "Sate Ayam",
+                description = "Sate ayam yang dipanggang sempurna dengan bumbu kacang gurih dan manis, favorit sepanjang masa.",
                 imageRes = R.drawable.sateayam,
                 ingredients = listOf("Daging ayam", "Bumbu kacang", "Tusuk sate"),
                 steps = listOf("Potong daging ayam", "Tusuk sate", "Bakar dan sajikan dengan bumbu kacang"),
@@ -37,11 +38,10 @@ object RecipeRepository {
                 favorite = false,
                 cooked = true
             ),
-
-            // Appetizer
             Recipe(
                 id = 3,
                 title = "Bruschetta",
+                description = "Camilan roti panggang khas Italia dengan topping tomat segar dan daun basil yang menggoda selera.",
                 imageRes = R.drawable.bruschetta,
                 ingredients = listOf("Roti", "Tomat", "Basil", "Minyak Zaitun"),
                 steps = listOf("Panggang roti", "Taburkan tomat dan basil", "Siram minyak zaitun"),
@@ -57,6 +57,7 @@ object RecipeRepository {
             Recipe(
                 id = 4,
                 title = "Salad Buah",
+                description = "Perpaduan buah-buahan segar dengan yogurt dan madu yang sehat dan menyegarkan.",
                 imageRes = R.drawable.saladbuah,
                 ingredients = listOf("Buah-buahan", "Yogurt", "Madu"),
                 steps = listOf("Potong buah", "Campur dengan yogurt dan madu"),
@@ -69,11 +70,10 @@ object RecipeRepository {
                 favorite = true,
                 cooked = false
             ),
-
-            // Dessert
             Recipe(
                 id = 5,
                 title = "Pancake",
+                description = "Pancake lembut yang bisa disajikan dengan berbagai topping seperti sirup maple atau buah segar.",
                 imageRes = R.drawable.pancake,
                 ingredients = listOf("Tepung terigu", "Telur", "Susu", "Gula"),
                 steps = listOf("Campur semua bahan", "Masak di wajan hingga kecokelatan", "Sajikan dengan sirup maple"),
@@ -89,6 +89,7 @@ object RecipeRepository {
             Recipe(
                 id = 6,
                 title = "Es Krim Vanila",
+                description = "Es krim klasik rasa vanila yang lembut dan manis, sempurna untuk dinikmati saat cuaca panas.",
                 imageRes = R.drawable.eskrim,
                 ingredients = listOf("Susu", "Gula", "Vanila", "Es Batu"),
                 steps = listOf("Campur semua bahan", "Bekukan dalam freezer", "Nikmati setelah beku"),
@@ -101,11 +102,10 @@ object RecipeRepository {
                 favorite = false,
                 cooked = false
             ),
-
-            // Side Dish
             Recipe(
                 id = 7,
                 title = "Kentang Goreng",
+                description = "Kentang goreng renyah di luar dan lembut di dalam, sempurna sebagai camilan atau pendamping makan.",
                 imageRes = R.drawable.kentanggoreng,
                 ingredients = listOf("Kentang", "Garam", "Minyak Goreng"),
                 steps = listOf("Potong kentang", "Goreng dalam minyak panas", "Taburi garam"),
@@ -121,6 +121,7 @@ object RecipeRepository {
             Recipe(
                 id = 8,
                 title = "Onion Rings",
+                description = "Camilan bawang bombay goreng tepung yang gurih dan renyah, cocok disajikan dengan saus favorit Anda.",
                 imageRes = R.drawable.onionrings,
                 ingredients = listOf("Bawang bombay", "Tepung", "Minyak Goreng"),
                 steps = listOf("Iris bawang", "Baluri tepung", "Goreng hingga keemasan"),
@@ -133,11 +134,10 @@ object RecipeRepository {
                 favorite = true,
                 cooked = false
             ),
-
-            // Soup
             Recipe(
                 id = 9,
                 title = "Sup Ayam",
+                description = "Sup ayam hangat dengan sayuran yang menyehatkan, cocok untuk disantap saat cuaca dingin.",
                 imageRes = R.drawable.supayam,
                 ingredients = listOf("Ayam", "Wortel", "Kentang", "Bumbu sup"),
                 steps = listOf("Rebus ayam", "Masukkan sayuran", "Masak hingga matang"),
@@ -153,6 +153,7 @@ object RecipeRepository {
             Recipe(
                 id = 10,
                 title = "Sup Tomat",
+                description = "Sup tomat segar dengan rasa asam manis yang ringan, pas dinikmati kapan saja.",
                 imageRes = R.drawable.suptomat,
                 ingredients = listOf("Tomat", "Bawang", "Kaldu"),
                 steps = listOf("Tumis bawang", "Masukkan tomat", "Masak dengan kaldu"),
@@ -165,11 +166,10 @@ object RecipeRepository {
                 favorite = false,
                 cooked = false
             ),
-
-            // Drink
             Recipe(
                 id = 11,
                 title = "Es Teh Manis",
+                description = "Minuman klasik berupa teh manis dingin yang menyegarkan dan cocok dinikmati kapan saja.",
                 imageRes = R.drawable.esteh,
                 ingredients = listOf("Teh", "Gula", "Es Batu"),
                 steps = listOf("Seduh teh", "Tambahkan gula dan es batu"),
@@ -185,6 +185,7 @@ object RecipeRepository {
             Recipe(
                 id = 12,
                 title = "Jus Alpukat",
+                description = "Minuman sehat dan creamy dari alpukat segar, dipadukan dengan susu kental manis.",
                 imageRes = R.drawable.jusalpukat,
                 ingredients = listOf("Alpukat", "Susu kental manis", "Es Batu"),
                 steps = listOf("Blender alpukat dengan susu", "Tambahkan es batu"),
@@ -200,6 +201,7 @@ object RecipeRepository {
             Recipe(
                 id = 13,
                 title = "Kwetiau Goreng",
+                description = "Kwetiau goreng lezat dengan daging sapi dan sayuran, dibumbui dengan kecap dan bawang putih.",
                 imageRes = R.drawable.kwetiau,
                 ingredients = listOf("Kwetiau", "Daging sapi", "Sayuran", "Kecap", "Bawang putih"),
                 steps = listOf(

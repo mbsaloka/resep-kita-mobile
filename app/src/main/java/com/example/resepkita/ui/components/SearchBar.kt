@@ -1,29 +1,17 @@
 package com.example.resepkita.ui.components
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,17 +19,27 @@ fun SearchBar(
     query: String,
     onQueryChanged: (String) -> Unit,
     modifier: Modifier = Modifier,
-    hint: String = "Search any recipes",
+    hint: String = "Search any recipes"
 ) {
     TextField(
         value = query,
         onValueChange = onQueryChanged,
         placeholder = {
             Text(
-                hint,
-                fontSize = 14.sp
+                text = hint,
+                fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = "Search",
+                modifier = Modifier.size(20.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        },
+        singleLine = true,
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
@@ -51,25 +49,19 @@ fun SearchBar(
             unfocusedIndicatorColor = Color.Transparent
         ),
         shape = RoundedCornerShape(100.dp),
-        leadingIcon = {
-            IconButton(onClick = { }) {
-                Icon(
-                    Icons.Filled.Search,
-                    contentDescription = "Search",
-                    modifier = Modifier.size(32.dp)
-                )
-            }
-        },
-        modifier = modifier
-            .height(52.dp),
-        textStyle = MaterialTheme.typography.bodySmall.copy(fontSize = 14.sp)
+        textStyle = LocalTextStyle.current.copy(fontSize = 14.sp),
+        modifier = modifier.height(52.dp)
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-fun SearchBarPreview(){
+fun SearchBarPreview() {
     MaterialTheme {
-        SearchBar(query = "", onQueryChanged = {}, hint = "cari di sini")
+        SearchBar(
+            query = "",
+            onQueryChanged = {},
+            hint = "Cari resep di sini"
+        )
     }
 }

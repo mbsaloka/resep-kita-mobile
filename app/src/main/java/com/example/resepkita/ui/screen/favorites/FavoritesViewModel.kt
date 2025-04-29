@@ -5,5 +5,6 @@ import com.example.resepkita.model.Recipe
 import com.example.resepkita.repository.RecipeRepository
 
 class FavoritesViewModel : ViewModel() {
-    val favorites: List<Recipe> = RecipeRepository.getRecipes().filter { it.id == 1 || it.id == 3 }
+    val favorites: List<Recipe> = RecipeRepository.getRecipes().filter { it.favorite }
+    val cooked: List<Recipe> = RecipeRepository.getRecipes().filter { it.cooked }
 }
