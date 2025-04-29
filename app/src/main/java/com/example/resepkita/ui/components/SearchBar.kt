@@ -30,14 +30,15 @@ import androidx.compose.material3.TextFieldDefaults
 fun SearchBar(
     query: String,
     onQueryChanged: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    hint: String = "Search any recipes",
 ) {
     TextField(
         value = query,
         onValueChange = onQueryChanged,
         placeholder = {
             Text(
-                "Search any recipes",
+                hint,
                 fontSize = 14.sp
             )
         },
@@ -69,6 +70,6 @@ fun SearchBar(
 @Composable
 fun SearchBarPreview(){
     MaterialTheme {
-        SearchBar(query = "", onQueryChanged = {})
+        SearchBar(query = "", onQueryChanged = {}, hint = "cari di sini")
     }
 }
